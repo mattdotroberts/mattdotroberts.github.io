@@ -1,7 +1,7 @@
 [
   {
     "date": "Sep 18 2024",
-    "type": "Alpha",
+    "type": "Build",
     "title": "Launched the Dad Bot",
     "description": "AI Assistant trained on award winning Newsletter 'The New Fatherhood'",
     "link": "https://course-mr-ai-1.bubbleapps.io/version-test/chatbot/"
@@ -11,6 +11,13 @@
     "type": "Community",
     "title": "4th Edition of NoCodeDrinks in Barcelona",
     "description": "Host a casual drinks night where nocoders and ai enthusiasts hang out",
+    "link": "https://x.com/mattdotroberts/status/1836154017535189141"
+  },
+  {
+    "date": "Sep 16 2024",
+    "type": "Build",
+    "title": "Triathlon App",
+    "description": "Simple Results tracker",
     "link": "https://x.com/mattdotroberts/status/1836154017535189141"
   }
 ]
