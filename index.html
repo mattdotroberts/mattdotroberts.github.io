@@ -15,30 +15,10 @@
         </header>
 
         <div id="changelog" class="space-y-12">
-            <!-- Changelog Entry 1 -->
-            <div class="border-t border-gray-200 pt-8">
-                <div class="flex items-center mb-4">
-                    <span class="text-lg font-semibold text-gray-700">Sep 18 2024</span>
-                    <span class="ml-4 px-2 py-1 bg-purple-100 text-purple-700 text-sm font-medium rounded">Alpha</span>
-                </div>
-                <h3 class="text-xl font-semibold text-gray-900 mb-2">Launched the Dad Bot</h3>
-                <p class="text-gray-600 mb-4">AI Assistant trained on award winning Newsletter 'The New Fatherhood'</p>
-                <a href="https://course-mr-ai-1.bubbleapps.io/version-test/chatbot/" class="text-blue-600 hover:text-blue-800 font-medium">View Project</a>
-            </div>
-
-            <!-- Changelog Entry 2 -->
-            <div class="border-t border-gray-200 pt-8">
-                <div class="flex items-center mb-4">
-                    <span class="text-lg font-semibold text-gray-700">Sep 17 2024</span>
-                    <span class="ml-4 px-2 py-1 bg-green-100 text-green-700 text-sm font-medium rounded">Community</span>
-                </div>
-                <h3 class="text-xl font-semibold text-gray-900 mb-2">4th Edition of NoCodeDrinks in Barcelona</h3>
-                <p class="text-gray-600 mb-4">Host a casual drinks night where nocoders and ai enthusiasts hang out</p>
-                <a href="https://x.com/mattdotroberts/status/1836154017535189141" class="text-blue-600 hover:text-blue-800 font-medium">View Event</a>
-            </div>
+            <!-- Changelog entries will be dynamically inserted here -->
         </div>
     </div>
-    <!-- New sticky footer -->
+
     <footer class="fixed bottom-0 left-0 right-0 bg-gray-100 shadow-md py-4">
         <div class="container mx-auto px-4 flex justify-center items-center space-x-6">
             <span class="text-gray-700 font-medium">Want to work with me?</span>
@@ -53,5 +33,42 @@
             </a>
         </div>
     </footer>
+
+    <script>
+        async function fetchChangelogEntries() {
+            const response = await fetch('changelog.json');
+            const data = await response.json();
+            return data;
+        }
+
+        function renderChangelogEntry(entry) {
+            return `
+                <div class="border-t border-gray-200 pt-8">
+                    <div class="flex items-center mb-4">
+                        <span class="text-lg font-semibold text-gray-700">${entry.date}</span>
+                        <span class="ml-4 px-2 py-1 bg-${entry.type.toLowerCase()}-100 text-${entry.type.toLowerCase()}-700 text-sm font-medium rounded">${entry.type}</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">${entry.title}</h3>
+                    <p class="text-gray-600 mb-4">${entry.description}</p>
+                    <a href="${entry.link}" class="text-blue-600 hover:text-blue-800 font-medium">View Project</a>
+                </div>
+            `;
+        }
+
+        async function populateChangelog() {
+            const changelogContainer = document.getElementById('changelog');
+            try {
+                const entries = await fetchChangelogEntries();
+                const entriesHTML = entries.map(renderChangelogEntry).join('');
+                changelogContainer.innerHTML = entriesHTML;
+            } catch (error) {
+                console.error('Error fetching changelog entries:', error);
+                changelogContainer.innerHTML = '<p>Error loading changelog entries. Please try again later.</p>';
+            }
+        }
+
+        // Call the function to populate the changelog when the page loads
+        populateChangelog();
+    </script>
 </body>
 </html>
