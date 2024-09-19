@@ -35,6 +35,12 @@
     </footer>
 
     <script>
+        const tagStyles = {
+            build: 'bg-green-100 text-green-800',
+            community: 'bg-blue-100 text-blue-800',
+            thought: 'bg-orange-100 text-orange-800'
+        };
+
         async function fetchChangelogEntries() {
             const response = await fetch('changelog.json');
             const data = await response.json();
@@ -42,11 +48,12 @@
         }
 
         function renderChangelogEntry(entry) {
+            const tagClass = tagStyles[entry.type.toLowerCase()] || 'bg-gray-100 text-gray-800';
             return `
                 <div class="border-t border-gray-200 pt-8">
                     <div class="flex items-center mb-4">
                         <span class="text-lg font-semibold text-gray-700">${entry.date}</span>
-                        <span class="ml-4 px-2 py-1 bg-${entry.type.toLowerCase()}-100 text-${entry.type.toLowerCase()}-700 text-sm font-medium rounded">${entry.type}</span>
+                        <span class="ml-4 px-2 py-1 ${tagClass} text-sm font-medium rounded">${entry.type}</span>
                     </div>
                     <h3 class="text-xl font-semibold text-gray-900 mb-2">${entry.title}</h3>
                     <p class="text-gray-600 mb-4">${entry.description}</p>
