@@ -1,13 +1,5 @@
 [
   {
-    "date": "Aug 1 2026",
-    "type": "Thought",
-    "title": "What LLM benchmarks actually mean for teams",
-    "description": "A plain-English memo on why 98% vs 95% usually means one extra miss, and why speed, cost, workflow, and task risk matter more than leaderboard hype.",
-    "link": "./llm-benchmarks-practical-guide.html",
-    "cta": "Read Memo"
-  },
-  {
     "date": "Sep 18 2024",
     "type": "Build",
     "title": "Launched the Dad Bot",
