@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What LLM Benchmarks Actually Mean for Teams</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-gray-900 font-sans">
+    <main class="container mx-auto px-4 py-10 max-w-3xl">
+        <a href="./index.html" class="text-blue-600 hover:text-blue-800 font-medium">← Back to changelog</a>
+
+        <header class="mt-6 mb-10">
+            <p class="text-sm uppercase tracking-wide text-orange-700 font-semibold">Memo · Aug 1 2026</p>
+            <h1 class="text-4xl font-bold mt-2 mb-4">What LLM benchmarks actually mean for teams</h1>
+            <p class="text-xl text-gray-600">A plain-English guide to model scores, real-world tradeoffs, and why 98% vs 95% is usually much smaller than it sounds.</p>
+        </header>
+
+        <section class="mb-8 p-5 bg-orange-50 border border-orange-200 rounded-lg">
+            <h2 class="text-xl font-semibold mb-2">The short version</h2>
+            <p class="text-gray-700">There is no single best model in every situation. The best models are now close enough that workflow, tools, documentation use, speed, and cost often matter more than a tiny leaderboard gap.</p>
+        </section>
+
+        <section class="mb-10">
+            <h2 class="text-2xl font-semibold mb-4">What the recent benchmarks are really saying</h2>
+            <div class="space-y-4 text-gray-700">
+                <p><strong>Supabase</strong> tested coding agents on real tasks across building, deploying, investigating, and fixing issues. With skills loaded, the top result was 100%, while several others scored 95%. On their benchmark, that meant <strong>19 out of 19 tasks passed versus 18 out of 19</strong>. In other words: often just one extra miss.</p>
+                <p><strong>Databricks</strong> reached a similar practical conclusion: the best cost/performance options now include OpenAI, Anthropic, and open models. They also found that token pricing alone is a poor guide to actual cost, because a more capable model can finish faster with fewer retries.</p>
+                <p><strong>Render</strong> found that different tools won on different jobs. Cursor led on setup speed and deploy workflow, Claude Code was strong for fast prototyping, Gemini was useful for very large-context refactors, and Codex had a strong model but a weaker user experience in that test.</p>
+                <p><strong>JetBrains</strong> showed the same pattern on Kotlin tasks: the leading tools were ahead, but not by absurd margins. The difference between 85.7% and 81.9% was <strong>90 solved tasks versus 86</strong> out of 105.</p>
+                <p><strong>Artificial Analysis</strong> makes the tradeoff even clearer by tracking performance, time, and cost together. Some agents are similarly good, but much faster. Others are much cheaper, but noticeably less reliable.</p>
+            </div>
+        </section>
+
+        <section class="mb-10">
+            <h2 class="text-2xl font-semibold mb-4">What does 98% vs 95% mean in real life?</h2>
+            <div class="space-y-4 text-gray-700">
+                <p>Usually, not as much as people think.</p>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>On a 20-task benchmark, 98% vs 95% is roughly <strong>1 task difference</strong>.</li>
+                    <li>On a 100-task benchmark, it is roughly <strong>3 tasks difference</strong>.</li>
+                    <li>On Supabase's benchmark, 100% vs 95% was <strong>19/19 vs 18/19</strong>.</li>
+                </ul>
+                <p>So if you're choosing between two top-tier models, the question is usually not "Which one is magically smarter?" It is more like: <strong>which one misses fewer important tasks, and how expensive are those misses?</strong></p>
+            </div>
+        </section>
+
+        <section class="mb-10">
+            <h2 class="text-2xl font-semibold mb-4">The bit most people miss</h2>
+            <div class="space-y-4 text-gray-700">
+                <p>Not all mistakes cost the same.</p>
+                <p>If a weaker result means the model needs one extra prompt, writes a slightly clunky draft, or needs a little cleanup, most teams can live with that.</p>
+                <p>If the weaker result means a bad migration, a security mistake, a deployment issue, or a broken debugging trail, then that small percentage gap suddenly matters a lot.</p>
+                <p>That is why the right question is not just "What score did it get?" It is:</p>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>What kind of task failed?</li>
+                    <li>How risky is that task?</li>
+                    <li>How easy is it for a human to catch and correct?</li>
+                    <li>How often does the team run this workflow?</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="mb-10">
+            <h2 class="text-2xl font-semibold mb-4">What a practical team should do</h2>
+            <div class="space-y-4 text-gray-700">
+                <p><strong>Use the best models for high-risk work:</strong> auth, security, migrations, production debugging, incident resolution, or anything customer-facing that is costly to get wrong.</p>
+                <p><strong>Use cheaper or faster models for lower-risk work:</strong> scaffolding, first drafts, repetitive edits, boilerplate, or refactors that will be reviewed by a human anyway.</p>
+                <p><strong>Pay attention to the wrapper, not just the model:</strong> the agent tool, docs access, context handling, and workflow design can change results a lot.</p>
+                <p><strong>Don't obsess over tiny leaderboard gaps:</strong> a 2-3 point difference at the top is often less important than speed, reliability, and usability inside your team's actual workflow.</p>
+            </div>
+        </section>
+
+        <section class="mb-10 p-5 bg-gray-50 border border-gray-200 rounded-lg">
+            <h2 class="text-xl font-semibold mb-2">Bottom line</h2>
+            <p class="text-gray-700">A small benchmark gap between top models usually means a small real-world gap. The bigger differences come from task type, workflow design, documentation use, and how expensive the mistakes are when they happen.</p>
+        </section>
+
+        <section class="mb-16">
+            <h2 class="text-2xl font-semibold mb-4">Sources</h2>
+            <ul class="list-disc pl-6 space-y-2 text-blue-700">
+                <li><a href="https://supabase.com/blog/introducing-supabase-evals" class="hover:underline">Supabase: Introducing Supabase Evals</a></li>
+                <li><a href="https://supabase.com/evals" class="hover:underline">Supabase Evals leaderboard</a></li>
+                <li><a href="https://www.databricks.com/blog/benchmarking-coding-agents-databricks-multi-million-line-codebase" class="hover:underline">Databricks: Benchmarking Coding Agents on a Multi-Million Line Codebase</a></li>
+                <li><a href="https://render.com/blog/ai-coding-agents-benchmark" class="hover:underline">Render: Testing AI coding agents</a></li>
+                <li><a href="https://blog.jetbrains.com/kotlin/2026/07/introducing-the-kotlin-benchmark-evaluate-ai-coding-agents-on-real-world-kotlin-tasks/" class="hover:underline">JetBrains: Kotlin Benchmark for AI Coding Agents</a></li>
+                <li><a href="https://artificialanalysis.ai/agents/coding-agents" class="hover:underline">Artificial Analysis: Coding Agent Benchmarks</a></li>
+            </ul>
+        </section>
+    </main>
+</body>
+</html>
